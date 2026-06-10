@@ -34,7 +34,7 @@ A aplicação implementa os testes unitários e a lógica de unificação para r
 Para atender aos requisitos da disciplina, este projeto foi desenvolvido utilizando as seguintes tecnologias:
 
 - **Linguagem Orientada a Objetos:** Java (Compatível com Java 8 ou superior)
-- **Framework de Testes Unitários:** JUnit 4
+- **Framework de Testes Unitários:** JUnit 5 (Jupiter) — versão 5.14.3
 - **Ambiente/IDE Padrão:** Eclipse IDE (Projeto contém os arquivos nativos `.classpath` e `.project`)
 
 ---
@@ -52,7 +52,9 @@ A execução é feita de forma nativa pela IDE. Recomendamos o uso do **Eclipse 
 3. Abra o Eclipse e vá no menu **File** > **Import...**
 4. Na janela que abrir, expanda a pasta **General** e selecione **Existing Projects into Workspace**. Clique em *Next*.
 5. Em *Select root directory*, clique em **Browse...**, selecione a pasta raiz do projeto clonado e clique em **Finish**. O Eclipse fará a configuração automaticamente lendo o arquivo `.classpath`.
-6. **Para rodar os testes:** No painel lateral esquerdo (*Package Explorer*), clique com o botão direito do mouse sobre a pasta `test`.
+6. **Para rodar todos os casos de uma vez (recomendado):** no *Package Explorer*, abra a pasta `test` > pacote `br.unb.tppe` e clique com o botão direito na classe de suíte **`AllTests.java`**.
 7. Selecione **Run As** > **JUnit Test**.
-8. Uma aba do JUnit se abrirá mostrando a execução de todos os casos de teste e a barra verde confirmando o sucesso das validações.
+8. Uma aba do JUnit se abrirá com o título *"Deduplicacao de Autores - Todos os Casos"*, executando os testes dos 5 casos (`caso1` a `caso5`) e exibindo a barra verde que confirma o sucesso das validações.
+
+> Alternativamente, é possível rodar individualmente cada classe de teste (ou a pasta `test` inteira) via **Run As > JUnit Test**.
 

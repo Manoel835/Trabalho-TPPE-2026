@@ -1,20 +1,20 @@
 package br.unb.tppe.caso5;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class AgrupadorIdentificadoresTest {
 
     private AgrupadorIdentificadores agrupador;
 
-    @Before
+    @BeforeEach
     public void setup() {
         agrupador = new AgrupadorIdentificadores();
     }
