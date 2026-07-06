@@ -22,14 +22,24 @@ public class NormalizadorIniciais {
     }
 
     private String chaveComparacao(String nome) {
+        validarNome(nome);
+        List<String> tokens = tokenizar(nome);
+        List<String> nomesCompletos = new ArrayList<>();
+        List<String> iniciais = new ArrayList<>();
+        separarTokensEmNomesEIniciais(tokens, nomesCompletos, iniciais);
+        return montarChaveDeComparacao(nomesCompletos, iniciais);
+    }
+
+    private void validarNome(String nome) {
         if (nome == null || nome.isBlank()) {
             throw new IllegalArgumentException("Nome não pode ser vazio");
         }
+    }
 
-        List<String> tokens = tokenizar(nome);
-
-        List<String> nomesCompletos = new ArrayList<>();
-        List<String> iniciais = new ArrayList<>();
+    private void separarTokensEmNomesEIniciais(
+            List<String> tokens,
+            List<String> nomesCompletos,
+            List<String> iniciais) {
         for (String token : tokens) {
             if (token.length() == 1) {
                 iniciais.add(token);
@@ -37,7 +47,9 @@ public class NormalizadorIniciais {
                 nomesCompletos.add(token);
             }
         }
+    }
 
+    private String montarChaveDeComparacao(List<String> nomesCompletos, List<String> iniciais) {
         String sobrenome;
         List<String> iniciaisDosNomes;
 
@@ -46,13 +58,18 @@ public class NormalizadorIniciais {
             iniciaisDosNomes = iniciais;
         } else {
             sobrenome = nomesCompletos.get(nomesCompletos.size() - 1);
-            iniciaisDosNomes = new ArrayList<>();
-            for (int i = 0; i < nomesCompletos.size() - 1; i++) {
-                iniciaisDosNomes.add(nomesCompletos.get(i).substring(0, 1));
-            }
+            iniciaisDosNomes = extrairIniciaisDosNomesCompletos(nomesCompletos);
         }
 
         return sobrenome + "|" + String.join("", iniciaisDosNomes);
+    }
+
+    private List<String> extrairIniciaisDosNomesCompletos(List<String> nomesCompletos) {
+        List<String> iniciaisDosNomes = new ArrayList<>();
+        for (int i = 0; i < nomesCompletos.size() - 1; i++) {
+            iniciaisDosNomes.add(nomesCompletos.get(i).substring(0, 1));
+        }
+        return iniciaisDosNomes;
     }
 
     private List<String> tokenizar(String nome) {
