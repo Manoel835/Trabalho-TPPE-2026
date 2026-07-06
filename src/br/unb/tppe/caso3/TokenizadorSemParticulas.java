@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+//Refazendo mensagem de commit
 class TokenizadorSemParticulas {
 
     private static final List<String> PARTICULAS =
