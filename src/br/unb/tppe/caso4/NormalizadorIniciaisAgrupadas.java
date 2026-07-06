@@ -22,34 +22,10 @@ public class NormalizadorIniciaisAgrupadas {
     }
 
     private String chaveComparacao(String nome) {
-        if (nome == null || nome.isBlank()) {
-            throw new IllegalArgumentException("Nome não pode ser vazio");
-        }
-
-        List<String> tokens = tokenizar(nome);
-
-        if (tokens.size() < 2) {
-            return tokens.isEmpty() ? "" : tokens.get(0);
-        }
-
-        String sobrenome = tokens.get(tokens.size() - 1);
-        
-        List<String> nomesOuIniciais = tokens.subList(0, tokens.size() - 1);
-
-        StringBuilder iniciais = new StringBuilder();
-
-        if (nomesOuIniciais.size() == 1 && nomesOuIniciais.get(0).length() <= 3) {
-            iniciais.append(nomesOuIniciais.get(0));
-        } else {
-            for (String n : nomesOuIniciais) {
-                iniciais.append(n.charAt(0));
-            }
-        }
-
-        return sobrenome + "|" + iniciais.toString();
+        return new GeradorChaveComparacao(nome, this).compute();
     }
 
-    private List<String> tokenizar(String nome) {
+    List<String> tokenizar(String nome) {
         String texto = Normalizer
                 .normalize(nome, Normalizer.Form.NFD)
                 .replaceAll("\\p{M}", "")
