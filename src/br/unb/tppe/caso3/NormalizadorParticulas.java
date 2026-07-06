@@ -26,3 +26,4 @@ public class NormalizadorParticulas {
         return String.join(" ", tokens);
     }
 }
+
